@@ -1,5 +1,7 @@
 <template>
-  <h1>Date Difference</h1>
+  <main id="container">
+
+  </main>
 </template>
 
 <script>
@@ -8,5 +10,12 @@
   }
 </script>
 
-<style>
+<style lang="scss">
+  main#container {
+    width: 90%;
+    height: auto;
+    padding: 5px;
+    max-width: 400px;
+    background-color: red;
+  }
 </style>
