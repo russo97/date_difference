@@ -17,4 +17,8 @@ body {
   position: relative;
   align-items: center;
   justify-content: center;
+  /* background-color: #7293c0; */
+  background-image: linear-gradient(
+    to bottom left, #fff 40%, #c7cacf
+  );
 }
