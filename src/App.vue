@@ -3,12 +3,13 @@
     <h1 class="title">Diferença entre datas</h1>
 
     <div class="date_inputs">
-      <div class="date_input">
-        <input type="text" id="dataInicial" inputmode="tel" required />
-        <label for="dataInicial">Data inicial</label>
-      </div>
+      <DateInput
+        for_id="datainicial"
+        label="Data Inicial" />
 
-      <DateInput />
+      <DateInput
+        for_id="datafinal"
+        label="Data Final" />
     </div>
 
     <div class="date_result">
@@ -71,7 +72,7 @@
         text-align: center;
         border: solid 1px #ccc;
         text-transform: uppercase;
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     }
   }
