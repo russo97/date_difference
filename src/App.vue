@@ -4,16 +4,18 @@
 
     <div class="date_inputs">
       <div class="date_input">
-        <input type="text" inputmode="tel" placeholder="XX/XX/XXXX" />
+        <input type="text" id="dataInicial" inputmode="tel" required />
+        <label for="dataInicial">Data inicial</label>
       </div>
 
       <div class="date_input">
-        <input type="text" inputmode="tel" />
+        <input type="text" id="dataFinal" inputmode="tel" required />
+        <label for="dataFinal">Data final</label>
       </div>
     </div>
 
     <div class="date_result">
-      <input type="text" readonly />
+      <input type="text" placeholder="anos; meses; semanas; dias" readonly />
     </div>
   </main>
 </template>
@@ -25,23 +27,26 @@
 </script>
 
 <style lang="scss">
+  @import './utils/scss/global.scss';
+
   main#container {
     width: 90%;
     height: auto;
-    padding: 12px 5px;
     max-width: 400px;
+    padding: 12px 5px;
     background-color: #fff;
     box-shadow: 0 1px 3px #aaa;
 
-    display: flex;
-    align-items: center;
+    @extend %flex-center;
     flex-direction: column;
-    justify-content: center;
+    @include border-radius(3px);
 
     h1.title {
+      color: #444;
       padding: 13px 0;
       font-size: 14pt;
       text-align: center;
+      margin-bottom: 10px;
       text-transform: uppercase;
       font-family: 'Nunito', sans-serif;
     }
@@ -50,25 +55,46 @@
       width: 100%;
       padding: 5px;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+      @extend %flex-spacearound-center;
 
       .date_input {
         width: 50%;
         height: 25px;
+        position: relative;
+        @extend %flex-center;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
+        label,
         input {
           width: 90%;
           font-size: 12pt;
-          padding: 4px 4px;
           text-align: center;
-          border: solid 1px #ccc;
+          touch-action: manipulation;
+        }
+
+        label {
+          cursor: pointer;
+          padding: 6px 4px;
+          overflow: hidden;
+          position: absolute;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          text-transform: uppercase;
+          transition: .2s ease-in-out;
           font-family: 'Nunito', sans-serif;
+        }
+
+        input {
+          border: none;
+          padding: 4px 4px;
+          font-family: 'Nunito', sans-serif;
+
+          &:focus ~ label,
+          &:valid ~ label {
+            opacity: .7;
+            font-size: 10pt;
+            transform-origin: center bottom;
+            transform: translate(0, -20px) scale(.8);
+          }
         }
       }
     }
@@ -86,7 +112,11 @@
       input {
         width: 95%;
         padding: 4px 0;
+        font-size: 10pt;
+        text-align: center;
         border: solid 1px #ccc;
+        text-transform: uppercase;
+        font-family: 'Nunito', sans-serif;
       }
     }
   }

@@ -1,0 +1,24 @@
+
+@mixin border-radius ($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+
+%flex {
+  display: flex;
+}
+
+%flex-center {
+  @extend %flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-spacearound-center {
+  @extend %flex;
+  align-items: center;
+  justify-content: space-around;
+}
