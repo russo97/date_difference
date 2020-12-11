@@ -12,7 +12,7 @@
       {{ label }}
     </label>
 
-    <div class="active_border" :class="{ error: !dataFilledProperly }"></div>
+    <div class="active_border" :class="{ error: dateFilledProperly }"></div>
   </div>
 </template>
 
@@ -22,21 +22,26 @@
 
     data () {
       return {
-        currentDate: ''
+        currentDate: '',
+        fullDateMask: /(\d{2})\/(\d{2})\/(\d{4})/
       };
     },
 
     methods: {
       changeDate ($event) {
         this.currentDate = $event.target.value;
+      },
+
+      sendDate (date) {
+        this.$emit('input', date);
       }
     },
 
     computed: {
-      dataFilledProperly () {
-        const { currentDate } = this;
+      dateFilledProperly () {
+        const { currentDate, fullDateMask } = this;
 
-        return currentDate.length && /(\d{2})\/(\d{2})\/(\d{4})/.test(currentDate);
+        return currentDate.length > 0 && !fullDateMask.test(currentDate);
       }
     },
 
@@ -53,9 +58,11 @@
     },
 
     watch: {
-      dataFilledProperly (current) {
-        if (current) {
-          this.$emit('input', this.currentDate);
+      currentDate (date) {
+        const { dateFilledProperly, sendDate } = this;
+
+        if (date.length === 10 && !dateFilledProperly) {
+          sendDate(date);
         }
       }
     }

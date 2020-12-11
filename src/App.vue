@@ -40,21 +40,23 @@
       },
 
       getTimeFromDate (date) {
-        return new Date(date).valueOf();
-      }
+        const { ISO8601Date } = this;
+
+        return new Date(ISO8601Date(date)).valueOf();
+      },
     },
 
     computed: {
       dateTimeA () {
-        const { dateA, getTimeFromDate, ISO8601Date } = this;
+        const { dateA, getTimeFromDate } = this;
 
-        return getTimeFromDate(ISO8601Date(dateA));
+        return getTimeFromDate(dateA);
       },
 
       dateTimeB () {
-        const { dateB, getTimeFromDate, ISO8601Date } = this;
+        const { dateB, getTimeFromDate } = this;
 
-        return getTimeFromDate(ISO8601Date(dateB));
+        return getTimeFromDate(dateB);
       }
     },
 
