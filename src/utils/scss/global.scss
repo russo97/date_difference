@@ -22,3 +22,9 @@
   align-items: center;
   justify-content: space-around;
 }
+
+%flex-spacebetween-center {
+  @extend %flex;
+  align-items: center;
+  justify-content: space-between;
+}

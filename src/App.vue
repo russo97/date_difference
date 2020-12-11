@@ -16,7 +16,9 @@
     </div>
 
     <div class="date_result">
-      <input type="text" placeholder="anos; meses; semanas; dias" :value="isNaN(dateTimeA)" readonly />
+      <input type="text" placeholder="anos; meses; semanas; dias" readonly />
+
+      <button>Calcular</button>
     </div>
   </main>
 </template>
@@ -50,7 +52,7 @@
       dateTimeA () {
         const { dateA, getTimeFromDate } = this;
 
-        return getTimeFromDate(dateA);
+        return getTimeFromDate(dateA) > 0;
       },
 
       dateTimeB () {
@@ -115,23 +117,43 @@
 
     .date_result {
       width: 100%;
-      height: 35px;
+      height: 70px;
       padding: 5px;
+      margin: 10px 0;
 
-      display: flex;
       margin-top: 10px;
       align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      @extend %flex-spacebetween-center;
 
       input {
         width: 95%;
+        color: #fff;
+        border: none;
         padding: 4px 0;
         font-size: 10pt;
         text-align: center;
         background: transparent;
-        border: solid 1px #ccc;
         text-transform: uppercase;
+        border-bottom: solid 1px #ccc;
         font-family: 'Quicksand', sans-serif;
+      }
+
+      button {
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        padding: 5px 10px;
+        background-color: #fff;
+        text-transform: uppercase;
+        font-family: 'Nunito', sans-serif;
+        box-shadow: 0 2px 5px -2px #000;
+        transition: box-shadow .2s ease-in-out;
+
+        &:active {
+          box-shadow: none;
+          transform: scale(.98);
+        }
       }
     }
   }
