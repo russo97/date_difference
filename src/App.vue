@@ -18,7 +18,9 @@
     <div class="date_result">
       <input type="text" placeholder="anos; meses; semanas; dias" readonly />
 
-      <button>Calcular</button>
+      <button :class="{ disabled: !datesFilledProperly }">
+        Calcular
+      </button>
     </div>
   </main>
 </template>
@@ -32,7 +34,8 @@
     data () {
       return {
         dateA: '',
-        dateB: ''
+        dateB: '',
+        regexp: /(\d{2})\/(\d{2})\/(\d{4})/
       };
     },
 
@@ -59,6 +62,12 @@
         const { dateB, getTimeFromDate } = this;
 
         return getTimeFromDate(dateB);
+      },
+
+      datesFilledProperly () {
+        const { dateA, dateB, regexp } = this;
+
+        return [dateA, dateB].every( date => regexp.test(date) );
       }
     },
 
@@ -150,9 +159,14 @@
         box-shadow: 0 2px 5px -2px #000;
         transition: box-shadow .2s ease-in-out;
 
-        &:active {
+        &:not(.disabled):active {
           box-shadow: none;
           transform: scale(.98);
+        }
+
+        &.disabled {
+          opacity: .4;
+          cursor: default;
         }
       }
     }

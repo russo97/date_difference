@@ -61,9 +61,9 @@
       currentDate (date) {
         const { dateFilledProperly, sendDate } = this;
 
-        if (date.length === 10 && !dateFilledProperly) {
-          sendDate(date);
-        }
+        const shouldSendDates = date.length === 10 && !dateFilledProperly;
+
+        sendDate(shouldSendDates ? date : '');
       }
     }
   }
