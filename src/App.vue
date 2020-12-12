@@ -9,7 +9,6 @@
         label="Data Inicial" />
 
       <DateInput
-        :value="dateB"
         v-model="dateB"
         for_id="datafinal"
         label="Data Final" />
@@ -52,10 +51,24 @@
     },
 
     computed: {
+      dayInSeconds () {
+        return 1000 * 24 * 3600;
+      },
+
+      daysDifference () {
+        const { dateTimeA, dateTimeB, dayInSeconds } = this;
+
+        const [min, max] = [dateTimeA, dateTimeB].sort((a, b) => a - b);
+
+        console.log(min, max);
+
+        return Math.floor((max - min) / dayInSeconds);
+      },
+
       dateTimeA () {
         const { dateA, getTimeFromDate } = this;
 
-        return getTimeFromDate(dateA) > 0;
+        return getTimeFromDate(dateA);
       },
 
       dateTimeB () {
