@@ -58,11 +58,7 @@
       daysDifference () {
         const { dateTimeA, dateTimeB, dayInSeconds } = this;
 
-        const [min, max] = [dateTimeA, dateTimeB].sort((a, b) => a - b);
-
-        console.log(min, max);
-
-        return Math.floor((max - min) / dayInSeconds);
+        return Math.floor(Math.abs(dateTimeA - dateTimeB) / dayInSeconds);
       },
 
       dateTimeA () {
@@ -144,7 +140,6 @@
       margin: 10px 0;
 
       margin-top: 10px;
-      align-items: center;
       flex-direction: column;
       @extend %flex-spacebetween-center;
 
