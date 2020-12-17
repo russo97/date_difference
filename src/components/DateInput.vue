@@ -91,7 +91,7 @@
 
       &.error:after,
       &.error:before {
-        background: red;        
+        background: red;
       }
 
       &:after,

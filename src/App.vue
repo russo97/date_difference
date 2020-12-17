@@ -15,7 +15,7 @@
     </div>
 
     <div class="date_result">
-      <input type="text" placeholder="anos; meses; semanas; dias" readonly />
+      <input type="text" placeholder="anos; meses; semanas; dias" :value="dateDifferenceDays" readonly />
 
       <button :class="{ disabled: !datesFilledProperly }">
         Calcular
@@ -34,6 +34,7 @@
       return {
         dateA: '',
         dateB: '',
+        dateDifferenceDays: 0,
         regexp: /(\d{2})\/(\d{2})\/(\d{4})/
       };
     },
@@ -91,6 +92,18 @@
 
       dateB (current) {
         console.log('dataB', current);
+      },
+
+      datesFilledProperly (current) {
+        if (current) {
+          const { dateTimeA, dateTimeB, dayInSeconds } = this;
+
+          const dateDiff = Math.floor(Math.abs(dateTimeA - dateTimeB) / dayInSeconds);
+
+          this.dateDifferenceDays = `${dateDiff} dias`;
+        } else {
+          this.dateDifferenceDays = 'N/A';
+        }
       }
     }
   }
